@@ -30,30 +30,30 @@ function create (req, res) {
 
 function show (req, res) {
 
-  // // getting all places from ajax
-  // Place.find({}, function (err, places) {
-  //   if (err) {
-  //     console.log(err)
-  //     return
-  //   }
-  //   res.render('users/new', {
-  //     allPlaces: places
-  //   })
-  // })
-
-  // getting all places from google place api
-  const apiUrl = 'https://maps.googleapis.com/maps/api/place/textsearch/json?'
-  const apiKey = '&key=AIzaSyD3bDC9k6zz_wxVngX4Ei8-pWSAPwr0Qz8'
-  const qString = `query=hotels in singapore`
-
-  request(`${apiUrl}${qString}${apiKey}`, function (err, response, body) {
-    if (err) res.send(err)
-
-    var data = JSON.parse(body)
+  // getting all places from ajax
+  Place.find({}, function (err, places) {
+    if (err) {
+      console.log(err)
+      return
+    }
     res.render('users/new', {
-      places: data.results
+      allPlaces: places
     })
   })
+
+  // // getting all places from google place api
+  // const apiUrl = 'https://maps.googleapis.com/maps/api/place/textsearch/json?'
+  // const apiKey = '&key=AIzaSyD3bDC9k6zz_wxVngX4Ei8-pWSAPwr0Qz8'
+  // const qString = `query=hotels in singapore`
+  //
+  // request(`${apiUrl}${qString}${apiKey}`, function (err, response, body) {
+  //   if (err) res.send(err)
+  //
+  //   var data = JSON.parse(body)
+  //   res.render('users/new', {
+  //     places: data.results
+  //   })
+  // })
 
 }// show function
 
