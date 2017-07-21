@@ -1,0 +1,24 @@
+<h2>Search for places</h2>
+
+<form id="placeSearch" action="/places" method="post">
+  <label for="keyword">Search</label>
+  <input type="text" name="keyword" id="keyword" value="">
+
+  <button>Search</button>
+</form>
+
+<h2 id="keywordSearch">Results for keyword</h2>
+<img id="spinner"
+data-speed="300" class="hidden" src="img/spinner.gif" alt="loading" width="30">
+<ul id="searchResults">
+  <li>
+    <h2>mrs.pho</h2>
+    <p>address</p>
+    <button class="addBttn" data-name="Mrs Pho" data-address="349 Beach Rd, Singapore 199570" data-reference="CmRaAAAA5VGho3fWHJN70QXnnlRViSNwACI-h53TlLKcuXaqr-gLLZErxjkJ8vKcrK65Zq1vKAjxKRylsrG7FeA74rFZAbPAVZwHiCnrBymSzixt8TO8qj5xSQi3-5tZBd0E7P0sEhAvnLBbaKjjgSojQenV2hYrGhReQgXxgrMW80k-vcmyUJ1C8JX1iw">add</button>
+  </li>
+  <li>
+    <h2>pho real</h2>
+    <p>address</p>
+    <button class="addBttn" data-name="pho real" data-address="my hood">add</button>
+  </li>
+</ul>

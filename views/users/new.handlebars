@@ -1,0 +1,34 @@
+<h2>Submit new user</h2>
+
+<form id="newUserForm" action="/users" method="post">
+<div class="form-group">
+  <label>
+    Name:
+    <input type="text" name="user[name]" placeholder="Submit your name">
+  </label>
+</div>
+
+<div class="form-group">
+  <label>
+    Email:
+    <input type="text" name="user[email]" placeholder="e.g. jane@gmail.com">
+  </label>
+</div>
+
+<div class="form-group">
+  <label>
+    Password:
+    <input type="password" name="user[password]">
+  </label>
+</div>
+
+<div class="form-group">
+  <select name="place[id]">
+    {{#each places as |place|}}
+    <option value={{place.id}}>{{ place.name }}</option>
+    {{/each}}
+  </select>
+</div>
+
+  <button>Submit</button>
+</form>
