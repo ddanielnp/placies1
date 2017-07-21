@@ -38,6 +38,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 const placesRoute = require('./routes/placeRoute')
 const usersRoute = require('./routes/userRoute')
 
+// setup app.locals variables
+app.locals = {
+  GOOGLE_PLACE_KEY: process.env.GOOGLE_PLACE_KEY
+}
+
 // setup your project routes
 // NO REQUIRING AFTER THIS LINE
 // public paths

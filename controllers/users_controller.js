@@ -1,43 +1,67 @@
 const User = require('../models/User')
 const Place = require('../models/Place')
-const bcrypt = require('bcrypt') // not used
+const bcrypt = require('bcrypt')
 const request = require('request')
 
-function create (req, res) {
-  User.create(req.body.user, function (err, newUser) {
-    if (err) {
-      // flow if user is invalid
-      // passing error message to /users
+function create (req, res, next) {
+  // var salt = bcrypt.genSaltSync(10)
+  // var hash = bcrypt.hashSync(req.body.user.password, salt)
 
-      res.send(err)
-      // res.redirect('/users')
+  var newUser = new User({
+    name: req.body.user.name,
+    email: req.body.user.email,
+    password: req.body.user.password
+  })
+
+  newUser.places.push(req.body.place.id)
+
+  newUser.save(function (err, createdUser) {
+    if (err) {
+      // req.flash()
+      next(err)
     }
 
-    // flow is user is created
-
-    res.format({
-      html: function () {
-        res.redirect('/users/new')
-      },
-
-      json: function () {
-        res.send('respond for ajax')
-      }
+    res.send({
+      reqbody: req.body,
+    // hash: hash
+      newUser: newUser,
+      createdUser: createdUser
     })
-    // res.redirect('/users/new')
   })
-}
+
+  // User.create(req.body.user, function (err, newUser) {
+  //   if (err) {
+  //     // flow if user is invalid
+  //     // passing error message to /users
+  //
+  //     res.send(err)
+  //     // res.redirect('/users')
+  //   }
+  //
+  //   // flow is user is created
+  //
+  //   res.format({
+  //     html: function () {
+  //       res.redirect('/users/new')
+  //     },
+  //
+  //     json: function () {
+  //       res.send('respond for ajax')
+  //     }
+  //   })
+  //   // res.redirect('/users/new')
+  // })
+} // close for create function
 
 function show (req, res) {
-
-  // getting all places from ajax
+  // getting all places from DB
   Place.find({}, function (err, places) {
     if (err) {
       console.log(err)
       return
     }
     res.render('users/new', {
-      allPlaces: places
+      places: places
     })
   })
 
@@ -54,7 +78,6 @@ function show (req, res) {
   //     places: data.results
   //   })
   // })
-
 }// show function
 
 module.exports = {
