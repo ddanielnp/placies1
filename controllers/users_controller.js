@@ -17,7 +17,7 @@ function create (req, res, next) {
 
   newUser.save(function (err, createdUser) {
     if (err) {
-      // req.flash()
+      req.flash('errors', err.message)
       next(err)
     }
 
